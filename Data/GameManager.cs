@@ -1,5 +1,6 @@
 using TextRPG.Utils;
 namespace TextRPG.Data;
+using TextRPG.Models;
 
 public class GameManager
 {
@@ -61,7 +62,41 @@ public class GameManager
             
         }
         Console.WriteLine($"{name}님, 모험을 시작하겠습니다!");
+        
+        //직업선택
+        Console.WriteLine("직업을 선택하세요.");
+        Console.WriteLine("1:전사");
+        Console.WriteLine("2:궁수");
+        Console.WriteLine("3.마법사");
+
+        JobType job = JobType.Warrior;
+
+        while (true)
+        {
+            Console.WriteLine("선택 (1-3) : ");
+            String? input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    job=JobType.Warrior;
+                    break;
+                case "2":
+                    job=JobType.Archer;
+                    break;
+                case "3":
+                    job=JobType.Wizard;
+                    break;
+                default:
+                    Console.WriteLine("잘못된 입력입니다. 다시선택해주세요");
+                    continue;
+            }
+            break;
+        }
     }
+    
+    //0:전사, 1:마법사, 2:궁수 - 열거형 변수를 선언
+    
 
     #endregion
 }
