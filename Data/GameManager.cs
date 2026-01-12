@@ -34,6 +34,9 @@ public class GameManager
 
     public Player? Player { get; private set; }
     
+    //게임 실행 여부
+    public bool IsRunning { get; private set; } = true;
+    
 
     #endregion
 
@@ -47,8 +50,17 @@ public class GameManager
         
         //TODO:캐릭터 생성
         CreateCharacter();
+        
+        //메인 게임 루프
+        IsRunning = true;
+        while (IsRunning)
+        {
+            ShowMainMenu();
+        }
         //TODO:인벤토리 초기화
         //TODO:초기 아이템 지급
+        
+        //
 
     }
     
@@ -110,10 +122,71 @@ public class GameManager
         // Console.WriteLine($"Player ATK:{Player.AttackPower}");
         // Console.WriteLine($"Player DEF:{Player.Defense}");
         
-        Player.DisplayInfo();
+        //Player.DisplayInfo();
+        
+        ConsoleUI.PressAnyKey();
     }
     
     //0:전사, 1:마법사, 2:궁수 - 열거형 변수를 선언
 
+    #endregion
+
+    #region 메인 메뉴
+    public void ShowMainMenu()
+    {
+            Console.Clear();
+            Console.WriteLine("╔══════════════════════════════════════════╗");
+            Console.WriteLine("║                                          ║");
+            Console.WriteLine("║            메인 메뉴                     ║");
+            Console.WriteLine("║                                          ║");
+            Console.WriteLine("╚══════════════════════════════════════════╝\n");
+            Console.WriteLine("1. 상태보기");
+            Console.WriteLine("2. 인벤토리");
+            Console.WriteLine("3. 상점 방문");
+            Console.WriteLine("4. 던전 입장(전투)");
+            Console.WriteLine("5. 휴식(체력/마나 회복)");
+            Console.WriteLine("6. 게임 저장");
+            Console.WriteLine("0. 게임 종료");
+            Console.WriteLine("=================");
+            Console.Write("선택 (1-6): ");
+            
+            String? input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    //모험 시작
+                    Player.DisplayInfo();
+                    ConsoleUI.PressAnyKey();
+                    break;
+                case "2":
+                    //TODO:인벤토리 방문
+     
+                    break;
+                case "3":
+                    //TODO:상점 방문
+                    
+                    break;
+                case "4":
+                    //TODO:던전 입장 및 전투 기능 구현
+                    
+                    break;
+                case "5":
+                    //TODO:휴식 기능 구현
+                    
+                    break;
+                case "6":
+                    //TODO:저장 기능 구현
+                    
+                    break;
+                case "0":
+                    IsRunning = false;
+                    Console.WriteLine("게임을 종료합니다. 이용해주셔서 감사합니다!");
+                    break;
+                default:
+                    Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
+                    ConsoleUI.PressAnyKey();
+                    break;
+            }
+    }
     #endregion
 }

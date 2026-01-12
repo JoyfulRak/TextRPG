@@ -23,4 +23,12 @@ public class ConsoleUI
 ╚═══════════════════════════════════════════════════════════════════════╝
 ");
     }
+    
+    //아무키나 누르세요.
+    public static void PressAnyKey()
+    {
+        Console.WriteLine("\n계속하려면 아무 키나 누르세요...");
+        Console.ReadKey(true);
+        
+    }
 }
