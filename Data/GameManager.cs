@@ -60,7 +60,7 @@ public class GameManager
     private void CreateCharacter()
     {
         //이름 입력
-        Console.WriteLine("캐릭터의 이름을 입력하세요");
+        Console.Write("캐릭터의 이름을 입력하세요");
         String? name=Console.ReadLine();//nullable 허용
 
         if (string.IsNullOrWhiteSpace(name))
@@ -105,10 +105,12 @@ public class GameManager
         Console.WriteLine($"\n{name}님, {job} 직업으로 캐릭터가 생성되었습니다.");
         
         //테스트 코드
-        Console.WriteLine($"Player HP:{Player.CurrentHp}");
-        Console.WriteLine($"Player MP:{Player.CurrentMp}");
-        Console.WriteLine($"Player ATK:{Player.AttackPower}");
-        Console.WriteLine($"Player DEF:{Player.Defense}");
+        // Console.WriteLine($"Player HP:{Player.CurrentHp}");
+        // Console.WriteLine($"Player MP:{Player.CurrentMp}");
+        // Console.WriteLine($"Player ATK:{Player.AttackPower}");
+        // Console.WriteLine($"Player DEF:{Player.Defense}");
+        
+        Player.DisplayInfo();
     }
     
     //0:전사, 1:마법사, 2:궁수 - 열거형 변수를 선언

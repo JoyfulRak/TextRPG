@@ -13,7 +13,7 @@ public abstract class Character
     public int AttackPower  { get; protected set; }
     public int Defense { get; protected set; }
 
-    public int level { get; protected set; }
+    public int Level { get; protected set; }
     //생존 여부
     public bool IsAlive=>CurrentHp>0;
     
@@ -37,7 +37,19 @@ public abstract class Character
 
     #region 매서드
 
+    //공통으로 사용할 메서드
     
+    //캐릭터 스택 출력
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine($"==== {Name} 정보 ====");
+        Console.WriteLine($"레벨: {Level}");
+        Console.WriteLine($"체력: {CurrentHp}/{MaxHp}");
+        Console.WriteLine($"마나: {CurrentMp}/{MaxMp}");
+        Console.WriteLine($"공격력: {AttackPower}");
+        Console.WriteLine($"방어력: {Defense}");
+        Console.WriteLine("===================");
+    }
 
     #endregion
 }
