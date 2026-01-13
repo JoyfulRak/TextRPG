@@ -31,4 +31,16 @@ public class ConsoleUI
         Console.ReadKey(true);
         
     }
+
+    public static void ShowGameOver()
+    {
+        Console.Clear();
+        Console.WriteLine("\n╔══════════════════════════════════════════╗");
+        Console.WriteLine("║                                          ║");
+        Console.WriteLine("║            GAME OVER                     ║");
+        Console.WriteLine("║                                          ║");
+        Console.WriteLine("╚══════════════════════════════════════════╝\n");
+        
+        Console.WriteLine("게임을 종료합니다");
+    }
 }

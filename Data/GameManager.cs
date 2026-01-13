@@ -57,6 +57,12 @@ public class GameManager
         {
             ShowMainMenu();
         }
+        
+        //게임 종료 처리
+        if (!IsRunning)
+        {
+            ConsoleUI.ShowGameOver();
+        }
         //TODO:인벤토리 초기화
         //TODO:초기 아이템 지급
         
