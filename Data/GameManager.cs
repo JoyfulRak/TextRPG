@@ -173,7 +173,7 @@ public class GameManager
             
             String? input = Console.ReadLine();
             switch (input)
-            {
+            { 
                 case "1":
                     //모험 시작
                     Player.DisplayInfo();
