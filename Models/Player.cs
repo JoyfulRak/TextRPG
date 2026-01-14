@@ -84,5 +84,13 @@ public class Player : Character
         Console.WriteLine("===================");
     }
 
+    public override int Attack(Character target)
+    {
+        //TODO:장착 무기에 따른 추가 데미지
+        int attackDamage = AttackPower;
+        return target.TakeDamage(attackDamage);
+
+    }
+
     #endregion
 }

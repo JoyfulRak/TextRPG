@@ -1,6 +1,7 @@
 using TextRPG.Utils;
 namespace TextRPG.Data;
 using TextRPG.Models;
+using TextRPG.Systems;
 
 public class GameManager
 {
@@ -126,6 +127,11 @@ public class GameManager
         Enemy enemy=Enemy.CreateEnemy(Player.Level);
         Console.WriteLine($"적 {enemy.Name}(이)가 나타났습니다!");
         enemy.DisplayInfo();
+        
+        //전투 테스트
+        BattleSystem battleSystem=new BattleSystem();
+        bool PlayerWin=battleSystem.StartBattle(Player,enemy);
+        
         
         ConsoleUI.PressAnyKey();
     }

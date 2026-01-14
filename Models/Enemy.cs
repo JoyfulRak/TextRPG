@@ -43,7 +43,8 @@ public class Enemy:Character
         
     }
     
-    //적 캐릭터 정보 출력
+
+
     public override void DisplayInfo()
     {
         Console.Clear();
@@ -56,5 +57,10 @@ public class Enemy:Character
         Console.WriteLine("===================");
     }
     
+    //적 캐릭터 정보 출력
+    public override int Attack(Character target)
+    {
+        return target.TakeDamage(AttackPower);
+    }
     #endregion
 }
