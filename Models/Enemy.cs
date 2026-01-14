@@ -34,16 +34,16 @@ public class Enemy:Character
         string enemyName = enemyTupes[random.Next(enemyTupes.Length)];
         
         //적 캐릭터의 스탯 (레벨에 비례)
-        int maxHp = 30 + (enemyLevel - 1) * 10;
-        int maxMp = 10 + (enemyLevel - 1) * 5;
-        int attackPower = 5 + (enemyLevel - 1) * 3;
-        int defense = 2 + (enemyLevel - 1) * 2;
+        int maxHp = 50 + (enemyLevel - 1) * 20;
+        int maxMp = 20 + (enemyLevel - 1) * 5;
+        int attackPower = 20 + (enemyLevel - 1) * 5;
+        int defense = 5 + (enemyLevel - 1) * 3;
         int goldReward = 20 + (enemyLevel - 1) * 10;  
         
         return new Enemy($"Lv{enemyLevel} {enemyName}", maxHp, maxMp, attackPower, defense, enemyLevel, goldReward);
         
     }
-    
+     
 
 
     public override void DisplayInfo()
@@ -61,7 +61,23 @@ public class Enemy:Character
     //적 캐릭터 정보 출력
     public override int Attack(Character target)
     {
-        return target.TakeDamage(AttackPower);
+        //return target.TakeDamage(AttackPower);
+        //랜덤 공격력 부여
+        //일반 공격 확율 70%, 크리티컬 확율 30%
+        Random random=new Random();
+        if (random.NextDouble() < 0.7)
+        {
+            //일반공격
+            return target.TakeDamage(AttackPower);
+        }
+        else
+        {
+            //강한공격(1.5배 데미지)
+            Console.WriteLine($"{Name}의 강한 공격");
+            int damage = (int)(AttackPower * 1.5);
+            return target.TakeDamage(damage);
+        }
+            
     }
     #endregion
 }
