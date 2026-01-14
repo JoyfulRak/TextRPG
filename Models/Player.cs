@@ -1,4 +1,6 @@
 namespace TextRPG.Models;
+using System;
+
 
 public class Player : Character
 {
@@ -84,12 +86,27 @@ public class Player : Character
         Console.WriteLine("===================");
     }
 
+    //기본공격메서드(override)
     public override int Attack(Character target)
     {
         //TODO:장착 무기에 따른 추가 데미지
         int attackDamage = AttackPower;
         return target.TakeDamage(attackDamage);
 
+    }
+    //스킬 공격(MP소모) : Player 전용 메소드
+    public int SkillAttack(Character target)
+    {
+        int mpCost = 15;
+        //스킬 공격=기본공격 1.5 데미지
+        int totalDamage = AttackPower;
+        totalDamage = (int)(totalDamage * 1.5f);
+        
+        //mp소모
+        CurrentMp-=mpCost;
+        
+        //데미지 전달
+        return target.TakeDamage(totalDamage);
     }
 
     #endregion

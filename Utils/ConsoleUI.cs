@@ -1,5 +1,5 @@
 namespace TextRPG.Utils;
-
+using System;
 public class ConsoleUI
 {
     //타이틀 표시 메서드

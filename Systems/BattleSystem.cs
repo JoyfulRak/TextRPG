@@ -89,7 +89,16 @@ public class BattleSystem
                 case "2":
                 {
                     //스킬 발동
-                    Console.WriteLine("스킬 발동은 아직 구현되지 않았습니다.");
+                    //스킬 사용 전에 MP체크
+                    if (player.CurrentHp < 15)
+                    {
+                        Console.WriteLine("MP가 부족합니다.");
+                        continue;
+                    }
+                    //스킬 발동
+                    int skillDamage=player.SkillAttack(enemy);
+                    Console.WriteLine($"{player.Name}의 스킬 공격! {enemy.Name}에게 {skillDamage}의 피해를 입혔습니다.");
+                    Console.WriteLine($"{enemy.Name}의 남은 HP: {enemy.CurrentHp}/{enemy.MaxHp}");
                     break;
                 }
                 case "3":
