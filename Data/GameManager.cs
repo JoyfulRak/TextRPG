@@ -39,7 +39,10 @@ public class GameManager
     public Player? Player { get; private set; }
     
     //전투 시스템
-    public BattleSystem? BattleSystem { get; private set; }
+    public BattleSystem BattleSystem { get; private set; }
+    
+    //인벤토리 시스템
+    public InventorySystem Inventory { get; private set; } 
     
     //게임 실행 여부
     public bool IsRunning { get; private set; } = true;
@@ -55,8 +58,11 @@ public class GameManager
         ConsoleUI.showTitle();
         Console.WriteLine("빡센게임에 오신걸 환영합니다.");
         
-        //TODO:캐릭터 생성
+        //릭터 생성
         CreateCharacter();
+        
+        //인벤토리 초기화
+        Inventory = new InventorySystem();
         
         //메인 게임 루프
         IsRunning = true;
@@ -174,8 +180,8 @@ public class GameManager
                     ConsoleUI.PressAnyKey();
                     break;
                 case "2":
-                    //TODO:인벤토리 방문
-     
+                    //인벤토리 방문
+                    Inventory.showInventoryMenu();
                     break;
                 case "3":
                     //TODO:상점 방문
