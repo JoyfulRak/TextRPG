@@ -25,40 +25,58 @@ public class BattleSystem
         while (player.IsAlive && enemy.IsAlive)
         {
             Console.WriteLine($"\n---- {turn} 턴 ----");
-            PlayerTurn(player, enemy);
-
-            turn++;
-            //TODO : 플레이어의 공격
-
-
-            int damageToEnemy = Math.Max(0, player.AttackPower - enemy.Defense);
-            //enemy.CurrentHp -= damageToEnemy;
-            Console.WriteLine($"{player.Name}(이)가 {enemy.Name}(을)를 공격하여 {damageToEnemy}의 피해를 입혔습니다.");
-            //TODO:적 사망여부 판단
-            if (!enemy.IsAlive)
+            if (!PlayerTurn(player, enemy))
             {
-                Console.WriteLine($"\n{enemy.Name}(이)가 쓰러졌습니다!");
-                Console.WriteLine($"{player.Name}(이)가 {enemy.GoldReward} 골드를 획득했습니다!");
-                // player.Gold += enemy.GoldReward;
-                return true; //전투 승리
+                Console.WriteLine("\n전투에서 도망쳤습니다!");
+                return false;//전투 패배
             }
-            //TODO:적 턴
 
+            //TODO : 적 사망여부 판단
+            //TODO : 적 턴
+            turn++;
         }
 
+
+
+        //int damageToEnemy = Math.Max(0, player.AttackPower - enemy.Defense);
+        //enemy.CurrentHp -= damageToEnemy;
+        //.WriteLine($"{player.Name}(이)가 {enemy.Name}(을)를 공격하여 {damageToEnemy}의 피해를 입혔습니다.");
+   
+        //if (!enemy.IsAlive)
+        //{
+        //    Console.WriteLine($"\n{enemy.Name}(이)가 쓰러졌습니다!");
+        //    Console.WriteLine($"{player.Name}(이)가 {enemy.GoldReward} 골드를 획득했습니다!");
+        // player.Gold += enemy.GoldReward;
+        //    return true; //전투 승리
+
         //전투 결과 반환
-        return player.IsAlive;
-
-
-        #endregion
-
-        #region 플레이어 턴
-
-        //플레이어 턴(1.공격, 2.스킬 발동, 3.도망)
-
+        //return player.IsAlive;
+        if (player.IsAlive)
+        {
+            int gainGold = enemy.GoldReward;
+            Console.WriteLine("\n전투에서 승리했습니다");
+            Console.WriteLine($"\n{gainGold} 골드를 획득했습니다");
+            
+            player.GainGold(gainGold);
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("\n전투에서 패배했습니다...");
+            return false;
+        }
     }
 
-    private void PlayerTurn(Player player, Enemy enemy)
+
+
+    #endregion
+
+    #region 플레이어 턴
+
+    //플레이어 턴(1.공격, 2.스킬 발동, 3.도망)
+    
+
+    private bool PlayerTurn(Player player, Enemy enemy)
     {
         Console.WriteLine($"\n{player.Name}의 턴입니다!");
         Console.WriteLine($"HP: {player.CurrentHp}/{player.MaxHp} | MP: {player.CurrentMp}/{player.MaxMp}");
@@ -84,7 +102,7 @@ public class BattleSystem
                     //int damageToEnemy = Math.Max(0, player.AttackPower - enemy.Defense);
                     //enemy.CurrentHp -= damageToEnemy;
 
-                    break;
+                    return true;
                 }
                 case "2":
                 {
@@ -99,10 +117,10 @@ public class BattleSystem
                     int skillDamage=player.SkillAttack(enemy);
                     Console.WriteLine($"{player.Name}의 스킬 공격! {enemy.Name}에게 {skillDamage}의 피해를 입혔습니다.");
                     Console.WriteLine($"{enemy.Name}의 남은 HP: {enemy.CurrentHp}/{enemy.MaxHp}");
-                    break;
+                    return true;
                 }
                 case "3":
-                    break;
+                    return false; //도망
 
                 default:
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
