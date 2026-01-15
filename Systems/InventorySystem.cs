@@ -28,6 +28,10 @@ public class InventorySystem
     //아이템 추가
     public void AddItem(Item item)
     {
+        if (item == null)
+        {
+            return; // 아이템이 없으면 아무것도 하지 않고 그냥 돌아갑니다.
+        }
         Items.Add(item);
         Console.WriteLine($"{item.Name} 을 인벤토리에 추가했습니다.");
     }

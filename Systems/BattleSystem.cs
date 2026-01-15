@@ -86,14 +86,14 @@ public class BattleSystem
     {
         Console.WriteLine($"\n{player.Name}의 턴입니다!");
         Console.WriteLine($"HP: {player.CurrentHp}/{player.MaxHp} | MP: {player.CurrentMp}/{player.MaxMp}");
-        Console.WriteLine("\n 행동을 선택하세요.");
-        Console.WriteLine("1. 공격");
-        Console.WriteLine("2. 스킬 발동");
-        Console.WriteLine("3. 도망");
-        Console.Write("행동 선택 (1-3): ");
 
         while (true)
         {
+            Console.WriteLine("\n 행동을 선택하세요.");
+            Console.WriteLine("1. 공격");
+            Console.WriteLine("2. 스킬 발동");
+            Console.WriteLine("3. 도망");
+            Console.Write("행동 선택 (1-3): ");
             Console.Write("\n 선택 (1-3): ");
             string? input = Console.ReadLine();
 
@@ -114,7 +114,7 @@ public class BattleSystem
                 {
                     //스킬 발동
                     //스킬 사용 전에 MP체크
-                    if (player.CurrentHp < 15)
+                    if (player.CurrentMp < 15)
                     {
                         Console.WriteLine("MP가 부족합니다.");
                         continue;

@@ -64,6 +64,9 @@ public class GameManager
         //인벤토리 초기화
         Inventory = new InventorySystem();
         
+        //초기 아이템 지급
+        SetupInitItems();
+        
         //메인 게임 루프
         IsRunning = true;
         while (IsRunning)
@@ -149,6 +152,15 @@ public class GameManager
     }
     
     //0:전사, 1:마법사, 2:궁수 - 열거형 변수를 선언
+    
+    //초기 아이템 지급
+    private void SetupInitItems()
+    {
+        Inventory.AddItem(Equipment.CreateWeapon("목검"));
+        Inventory.AddItem(Equipment.CreateArmor("천갑옷"));
+        
+        Console.WriteLine("\n초기 장비 아이템을 지급했습니다.");
+    }
 
     #endregion
 

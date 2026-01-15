@@ -56,8 +56,8 @@ public class Equipment:Item
     {
         switch (armorType)
         {
-            case "가죽갑옷":
-                return new Equipment("가죽갑옷", "기본 방어구", 100, EquipmentSlot.Armor, 0, 5);
+            case "천갑옷":
+                return new Equipment("천갑옷", "기본 방어구", 100, EquipmentSlot.Armor, 0, 5);
             case "철갑옷":
                 return new Equipment("철갑옷", "강력한 방어구", 500, EquipmentSlot.Armor, 0, 15);
             case "전설갑옷":
