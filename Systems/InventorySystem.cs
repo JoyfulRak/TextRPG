@@ -12,7 +12,7 @@ public class InventorySystem
     private List<Item> Items { get; set; }
 
     //아이템 갯수(읽기 전용)
-    private int Count => Items.Count; //goes to 
+    public int Count => Items.Count; //goes to 
 
 
     #endregion
@@ -50,6 +50,17 @@ public class InventorySystem
         }
 
         return false;
+    }
+    
+    //인덱스 값으로 아이템 반환
+    public Item? GetItem(int index)
+    {
+        if (index >= 0 && index < Items.Count)
+        {
+            return Items[index];
+        }
+
+        return null;
     }
 
     #endregion
