@@ -23,7 +23,7 @@ public class Player : Character
     public Player(string name, JobType job) : base(
         name:name, 
         maxHp:GetInitHp(job), 
-        maxMp:GetInitHp(job), 
+        maxMp:GetInitMp(job), 
         attackPower:GetInitAttack(job), 
         defense:GetInitDefense(job), 
         level:1)
@@ -95,6 +95,7 @@ public class Player : Character
 
     }
     //스킬 공격(MP소모) : Player 전용 메소드
+    
     public int SkillAttack(Character target)
     {
         int mpCost = 15;

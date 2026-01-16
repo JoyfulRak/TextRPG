@@ -62,6 +62,12 @@ public class InventorySystem
             Console.WriteLine("인벤토리가 비어 있습니다.");
             return;
         }
+        Console.WriteLine("\n[아이템 목록]");
+        foreach (var item in Items)
+        {
+            // 아이템 정보 출력 (장착 관리 기능이 있다면 [E] 표시 로직도 여기에 추가)
+            item.DisplayInfo(); 
+        }
 
     }
 

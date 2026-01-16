@@ -67,6 +67,8 @@ public class GameManager
         //초기 아이템 지급
         SetupInitItems();
         
+        //
+        
         //메인 게임 루프
         IsRunning = true;
         while (IsRunning)

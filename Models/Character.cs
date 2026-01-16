@@ -46,7 +46,7 @@ public abstract class Character
     public virtual int TakeDamage(int damage)
     {
         int actualDamage = Math.Max(1, damage - Defense);
-        CurrentHp -= Math.Max(0,CurrentHp - actualDamage);
+        CurrentHp -=actualDamage;
         if (CurrentHp < 0)
         {
             CurrentHp = 0;
@@ -66,6 +66,24 @@ public abstract class Character
         Console.WriteLine($"공격력: {AttackPower}");
         Console.WriteLine($"방어력: {Defense}");
         Console.WriteLine("===================");
+    }
+    
+    //HP회복 메서드
+    public int HealHP(int amount)
+    {
+        int beforeHp = CurrentHp;
+        //회복 후 현재 HP 최대 HP를 넘지 않도록
+        CurrentHp =Math.Min(MaxHp, CurrentHp + amount);
+        return CurrentHp-beforeHp; //실제로 회복된 양을 반환
+    }
+    
+    //MP회복 메서드
+    public int HealMP(int amount)
+    {
+        int beforeMp = CurrentMp;
+        //회복 후 현재 MP가 최대 MP를 넘지 않도록
+        CurrentMp = Math.Min(MaxMp, CurrentMp + amount);
+        return CurrentMp - beforeMp; //실제로 회복된 양을 반환
     }
 
     #endregion
