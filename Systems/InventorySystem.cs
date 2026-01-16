@@ -63,10 +63,10 @@ public class InventorySystem
             return;
         }
         Console.WriteLine("\n[아이템 목록]");
-        foreach (var item in Items)
+        for(int i =0; i< Items.Count; i++)
         {
-            // 아이템 정보 출력 (장착 관리 기능이 있다면 [E] 표시 로직도 여기에 추가)
-            item.DisplayInfo(); 
+            Console.Write($"{i + 1}. {Items[i].Name} - {Items[i].Description}");
+            Items[i].DisplayInfo();
         }
 
     }

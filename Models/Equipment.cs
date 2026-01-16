@@ -26,7 +26,7 @@ public class Equipment:Item
         DefenseBonus = defenseBonus;
     }
     #endregion
-    public override bool Use(Character player)
+    public override bool Use(Player player)
     {
        //장비 착용 로직 구현
        return true;

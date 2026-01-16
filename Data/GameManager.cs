@@ -161,8 +161,14 @@ public class GameManager
     {
         Inventory.AddItem(Equipment.CreateWeapon("목검"));
         Inventory.AddItem(Equipment.CreateArmor("천갑옷"));
-        
         Console.WriteLine("\n초기 장비 아이템을 지급했습니다.");
+        
+        //포션 지급
+        Inventory.AddItem(Consumable.CreatePotion("체력포션"));
+        Inventory.AddItem(Consumable.CreatePotion("체력포션"));
+        Inventory.AddItem(Consumable.CreatePotion("마나포션"));
+
+        
     }
 
     #endregion

@@ -29,7 +29,7 @@ public abstract class Item
     #region 메서드
 
     //아이템 사용 메서드(추상 메서드)
-    public abstract bool Use(Character player);
+    public abstract bool Use(Player player);
     
     //아이템 정보 표시
     public virtual void DisplayInfo()
