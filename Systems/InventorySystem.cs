@@ -93,6 +93,7 @@ public class InventorySystem
                     break;
                 case "2":
                     //아이템 버리기 로직
+                    DropItem();
                     break;
                 case "0":
                     return;
@@ -132,6 +133,33 @@ public class InventorySystem
         }
         
         else if (index!= 0)
+        {
+            Console.WriteLine("잘못된 입력입니다.");
+        }
+    }
+
+    #endregion
+
+    #region 아이템버리기
+
+    private void DropItem()
+    {
+        if (Items.Count == 0) return;
+        
+        Console.WriteLine("\n버릴 아이템 번호(0:취소): ");
+        
+        if(int.TryParse(Console.ReadLine(), out int index)&& index >= 1 && index <= Items.Count)
+        {
+            Item item = Items[index - 1];
+            Console.WriteLine($"정말 {item.Name} 을 버리시겠습니까? (y/n): ");
+            if (Console.ReadLine().ToLower() == "y")
+            {
+                RemoveItem(item);
+            }
+            //RemoveItem(item);
+            //Console.WriteLine($"{item.Name} 을 버렸습니다.");
+        }
+        else if (index != 0)
         {
             Console.WriteLine("잘못된 입력입니다.");
         }
