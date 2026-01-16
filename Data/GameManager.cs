@@ -66,8 +66,9 @@ public class GameManager
         
         //초기 아이템 지급
         SetupInitItems();
+        // [추가] 사용자가 지급 메시지를 확인할 수 있도록 잠시 대기
+        ConsoleUI.PressAnyKey();
         
-        //
         
         //메인 게임 루프
         IsRunning = true;
