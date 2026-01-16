@@ -156,6 +156,22 @@ public class Player : Character
         Console.WriteLine($"골드 + {amount} 획득! 현재 골드: {Gold}");
     }
     
+    //골드 차감 메서드
+    public bool SpendGold(int amount)
+    {
+        if (Gold >= amount)
+        {
+            Gold -= amount;
+            Console.WriteLine($"골드 - {amount} 사용! 현재 골드: {Gold}");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("골드가 부족합니다.");
+            return false;
+        }
+    }
+    
     //장비 착용
     public void EquipItem(Equipment newEquipment)
     {
