@@ -29,7 +29,7 @@ public class Equipment:Item
     public override bool Use(Player player)
     {
        //장비 착용 로직 구현
-       Player.EquipItem(this);
+       player.EquipItem(this);
        
        return true;
     }
