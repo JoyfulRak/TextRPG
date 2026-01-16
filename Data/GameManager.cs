@@ -202,7 +202,7 @@ public class GameManager
                     break;
                 case "2":
                     //인벤토리 방문
-                    Inventory.showInventoryMenu();
+                    Inventory.showInventoryMenu(Player);
                     break;
                 case "3":
                     //TODO:상점 방문
