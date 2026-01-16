@@ -83,10 +83,39 @@ public class Player : Character
     //플레이어 정보 출력(오버라이드)
     public override void DisplayInfo()
     {
-        base.DisplayInfo(); //기본 정보 출력
+        //base.DisplayInfo(); //기본 정보 출력
+        Console.WriteLine($"====={Name} 정보=======");
+        Console.WriteLine($"레벨: {Level}");
+        Console.WriteLine($"체력: {CurrentHp}/{MaxHp}");
+        Console.WriteLine($"마나: {CurrentMp}/{MaxMp}");
+        int attackBonus = EquippedWeapon != null ? EquippedWeapon.AttackBonus : 0;
+        int defenseBonus = EquippedArmor != null ? EquippedArmor.DefenseBonus : 0;
+        Console.WriteLine($"공격력: {AttackPower} (+{attackBonus})");
+        Console.WriteLine($"방어력: {Defense} (+{defenseBonus})");
+        //Console.WriteLine($"공격력: {AttackPower}");
+        //Console.WriteLine($"방어력: {Defense}");
         Console.WriteLine($"직업: {Job}");
         Console.WriteLine($"골드: {Gold}");
-        Console.WriteLine("===================");
+        
+        //장착 아이템 목록
+        if(EquippedWeapon != null||EquippedArmor != null)
+        {
+            Console.WriteLine("===장착 아이템===");
+            if (EquippedWeapon != null)
+            {
+                Console.WriteLine($"무기: {EquippedWeapon.Name} (공격력 +{EquippedWeapon.AttackBonus})");
+            }
+
+            if (EquippedArmor != null)
+            {
+                Console.WriteLine($"방어구: {EquippedArmor.Name} (방어력 +{EquippedArmor.DefenseBonus})");
+                
+            }
+        }
+        else
+        {
+            Console.WriteLine("장착 무기: 없음");
+        }
     }
 
     //기본공격메서드(override)

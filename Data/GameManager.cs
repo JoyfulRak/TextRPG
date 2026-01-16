@@ -162,9 +162,20 @@ public class GameManager
     //초기 아이템 지급
     private void SetupInitItems()
     {
-        Inventory.AddItem(Equipment.CreateWeapon("목검"));
-        Inventory.AddItem(Equipment.CreateArmor("천갑옷"));
-        Console.WriteLine("\n초기 장비 아이템을 지급했습니다.");
+        //Inventory.AddItem(Equipment.CreateWeapon("목검"));
+        //Inventory.AddItem(Equipment.CreateArmor("천갑옷"));
+        //Console.WriteLine("\n초기 장비 아이템을 지급했습니다.");
+        
+        //기본장비
+        var weapon = Equipment.CreateWeapon("목검");
+        var armor = Equipment.CreateArmor("천갑옷");
+        Inventory.AddItem(weapon);
+        Inventory.AddItem(armor);
+        
+        //기본 장비 착용
+        Player.EquipItem(weapon);
+        Player.EquipItem(armor);
+        Console.WriteLine("\n기본 장비를 지급하고 착용했습니다.");
         
         //포션 지급
         Inventory.AddItem(Consumable.CreatePotion("체력포션"));
