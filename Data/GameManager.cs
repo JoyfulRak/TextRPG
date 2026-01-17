@@ -229,11 +229,12 @@ public class GameManager
                     ShopSystem.ShowShopMenu(Player, Inventory);
                     break;
                 case "4":
-                    //TODO:던전 입장 및 전투 기능 구현
+                    //던전 입장 및 전투 기능 구현
                     EnterDungeon();
                     break;
                 case "5":
-                    //TODO:휴식 기능 구현
+                    //휴식 기능 구현
+                    Rest();
                     
                     break;
                 case "6":
@@ -269,6 +270,33 @@ public class GameManager
         ConsoleUI.PressAnyKey();
     }
     
+    //휴식 (체력/마나 회복)
+    public void Rest()
+    {
+        //상수(Constant)
+        const int restCost = 50;
+        
+        Console.Clear();
+        Console.WriteLine("여관에서 휴식을 취합니다.");
+        Console.WriteLine($"\n휴식 비용: {restCost} 골드");
+        
+        if (Player.Gold < restCost)
+        {
+            Console.WriteLine("골드가 부족합니다. 휴식을 취할 수 없습니다.");
+            ConsoleUI.PressAnyKey();
+            return;
+        }
+        
+        Console.Write("휴식을 취하시겠습니까? (Y/N): ");
+        if (Console.ReadKey().Key == ConsoleKey.Y)
+        {
+            Player.SpendGold(restCost);
+            Player.HealHP(Player.MaxHp);
+            Player.HealMP(Player.MaxMp);
+            Console.WriteLine("\n휴식을 취했습니다. 체력과 마나가 모두 회복되었습니다.");
+            ConsoleUI.PressAnyKey();
+        }
+    }
 
     #endregion
     
