@@ -58,21 +58,26 @@ public class GameManager
 
     #region 게임 시작/종료
 
-    public void StartGame()
+    public void StartGame(bool loadedGame=false)
     {
         //타이틀 표시
         ConsoleUI.showTitle();
         Console.WriteLine("빡센게임에 오신걸 환영합니다.");
         
-        //릭터 생성
-        CreateCharacter();
-        
-        //테스트 코드.
-        //Player.TakeDamage(100);
-        
-        //인벤토리 초기화
-        Inventory = new InventorySystem();
-        
+        //새로 시작하는 게임에만 새 캐릭터 및 설정을 처리
+        if (!loadedGame)
+        {
+
+            //캐릭터 생성
+            CreateCharacter();
+
+            //테스트 코드.
+            //Player.TakeDamage(100);
+
+            //인벤토리 초기화
+            Inventory = new InventorySystem();
+        }
+
         //초기 아이템 지급
         SetupInitItems();
         // [추가] 사용자가 지급 메시지를 확인할 수 있도록 잠시 대기
@@ -301,8 +306,9 @@ public class GameManager
 
     #endregion
 
-    #region 저장 기능
+    #region 저장/로드 기능
 
+    //게임저장
     public void SaveGame()
     {
         if (Player == null || Inventory == null)
@@ -317,6 +323,23 @@ public class GameManager
             ConsoleUI.PressAnyKey();
             
         }
+    }
+    
+    //게임 로드
+    public bool LoadGame()
+    {
+        var saveDate = SaveLoadSystem.LoadGame();
+        if (saveDate == null) return false;
+        
+        //1.플레이어 데이터 복원
+        Player = SaveLoadSystem.LoadPlayer(saveDate.Player);
+        
+        //2.인벤토리 데이터 복원
+        
+        //3.장착 아이템 복원
+        Console.WriteLine("게임이 성공적으로 로드되었습니다.");
+        ConsoleUI.PressAnyKey();
+        return true;
     }
 
     #endregion
