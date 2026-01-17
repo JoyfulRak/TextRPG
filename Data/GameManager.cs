@@ -238,7 +238,8 @@ public class GameManager
                     
                     break;
                 case "6":
-                    //TODO:저장 기능 구현
+                    //저장 기능 구현
+                    SaveGame();
                     
                     break;
                 case "0":
@@ -295,6 +296,26 @@ public class GameManager
             Player.HealMP(Player.MaxMp);
             Console.WriteLine("\n휴식을 취했습니다. 체력과 마나가 모두 회복되었습니다.");
             ConsoleUI.PressAnyKey();
+        }
+    }
+
+    #endregion
+
+    #region 저장 기능
+
+    public void SaveGame()
+    {
+        if (Player == null || Inventory == null)
+        {
+            Console.WriteLine("저장할 게임 데이터가 없습니다.");
+            return;
+        }
+
+        if (SaveLoadSystem.SaveGame(Player, Inventory))
+        {
+            Console.WriteLine("게임이 성공적으로 저장되었습니다.");
+            ConsoleUI.PressAnyKey();
+            
         }
     }
 
