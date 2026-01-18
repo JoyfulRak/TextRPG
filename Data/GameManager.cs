@@ -335,8 +335,11 @@ public class GameManager
         Player = SaveLoadSystem.LoadPlayer(saveDate.Player);
         
         //2.인벤토리 데이터 복원
+        Inventory = SaveLoadSystem.LoadInventory(saveDate.Inventory, Player);
         
         //3.장착 아이템 복원
+        SaveLoadSystem.LoadEquippedItems(Player,saveDate.Player, Inventory);
+        
         Console.WriteLine("게임이 성공적으로 로드되었습니다.");
         ConsoleUI.PressAnyKey();
         return true;

@@ -143,8 +143,70 @@ public class SaveLoadSystem
     }
     
     //ItemData DTO 를 Inventory 클래스로 변환 메서드
+    public static InventorySystem LoadInventory(List<ItemData> itemDataList, Player player)
+    {
+        var inventory = new InventorySystem();
+        foreach (var itemData in itemDataList)
+        {
+            Item? item = null;
+            if (itemData.ItemType == "Equipment")
+            {
+                //장착 슬롯 확인
+                var slot = Enum.Parse<EquipmentSlot>(itemData.Slot);
+                if (slot == EquipmentSlot.Weapon)
+                {
+                    item = Equipment.CreateWeapon(itemData.Name);
+                }
+                else if (slot == EquipmentSlot.Armor)
+                {
+                    item = Equipment.CreateArmor(itemData.Name);
+                }
+            }
+            else if (itemData.ItemType == "Consumable")
+            {
+                item = Consumable.CreatePotion(itemData.Name);
+            }
+
+            if (item != null)
+            {
+                inventory.AddItem(item);
+            }
+        }
+        return inventory;
+    }
     
     //저장된 장착 아이템을 복원하는 메서드(무기/방어구)
+    public static void LoadEquippedItems(Player player, PlayerData data, InventorySystem inventory)
+    {
+        //무기 복원
+        if (!string.IsNullOrEmpty(data.EquippedWeaponName))
+        {
+            //인벤토리에서 같은 무기를 찾기 
+            for(int i=0;i<inventory.Count;i++)
+            {
+                var item = inventory.GetItem(i);
+                if (item is Equipment equipment && equipment.Name == data.EquippedWeaponName && equipment.Slot == EquipmentSlot.Weapon)
+                {
+                    player.EquipItem(equipment);
+                    break;
+                }
+            }
+        }
+        
+        //방어구 복원
+        if (!string.IsNullOrEmpty(data.EquippedArmorName))
+        {
+            for(int i=0;i<inventory.Count;i++)
+            {
+                var item = inventory.GetItem(i);
+                if (item is Equipment equipment && equipment.Name == data.EquippedArmorName && equipment.Slot == EquipmentSlot.Armor)
+                {
+                    player.EquipItem(equipment);
+                    break;
+                }
+            }
+        }
+    }
     
     //아이템 생성->Inventory추가 
 
